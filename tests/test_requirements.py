@@ -26,8 +26,19 @@ def test_serialx_requirement_matches_home_assistant_constraint() -> None:
         if (line := raw_line.split("#", 1)[0].strip())
     ]
     constraint = next(item for item in constraints if canonicalize_name(item.name) == "serialx")
-    assert declared.specifier == constraint.specifier, (
+    pins = list(constraint.specifier)
+    assert len(pins) == 1 and pins[0].operator == "=="
+    assert pins[0].version in declared.specifier, (
         f"manifest.json requires {declared}, but Home Assistant package_constraints.txt "
         f"requires {constraint}; installing successfully in a development venv does not "
         "prove compatibility with Home Assistant's dependency installer"
     )
+
+    # Shared Core dependencies must allow Core to select its constrained version.
+    # An exact custom pin breaks installation when Core updates the dependency.
+    assert all(item.operator not in {"==", "==="} for item in declared.specifier)
+    # The supported baseline already satisfies the declaration: no upgrade needed.
+    assert "1.11.0" in declared.specifier
+    from homeassistant.util.package import is_installed
+
+    assert is_installed(str(declared))

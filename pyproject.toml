@@ -4,7 +4,7 @@ version = "0.4.1"
 license = "MIT"
 description = "Local Home Assistant control of an Itho Spider through evofw3 USB"
 requires-python = ">=3.14"
-dependencies = ["serialx==1.11.0"]
+dependencies = ["serialx>=1.11.0"]
 
 [dependency-groups]
 dev = [

@@ -21,11 +21,14 @@ jobs:
       - run: python scripts/build_release.py --output dist --prepared
   hassfest:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        home-assistant: ['2026.10.4', 'latest']
     steps:
       - uses: actions/checkout@v4
-      # Match the supported runtime; latest validates unreleased Core dependencies.
-      - name: hassfest (Home Assistant 2026.10.4)
-        run: docker run --rm -v "${{ github.workspace }}:/github/workspace" ghcr.io/home-assistant/hassfest:2026.10.4
+      # Validate the supported baseline and current upstream requirements.
+      - name: hassfest
+        run: docker run --rm -v "${{ github.workspace }}:/github/workspace" ghcr.io/home-assistant/hassfest:${{ matrix.home-assistant }}
   hacs:
     runs-on: ubuntu-latest
     steps:

@@ -4,6 +4,7 @@
 
 - Distribute independent source without private Git history or installation evidence.
 - Remove personal address/name defaults from new configuration forms. Require explicit identity for transport RF sends; identity-less transport is probe-only.
+- Declare serialx with a compatible minimum (>=1.11.0), as required for shared Home Assistant dependencies; Home Assistant 2026.10.4 retains its constrained 1.11.0 version.
 - Preserve domain, config version 2, v1 migration, all registry identities and saved options.
 - Replace installation-specific test identities with synthetic fixtures; add upgrade and distribution regression checks.
 - Add installation, management, battery, troubleshooting, upgrade/rollback, provenance and maintainer documentation.
