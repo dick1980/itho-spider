@@ -1,6 +1,6 @@
-"""Frozen 0.4.0 registry contract, using synthetic identities only.
+"""Registry identity and configuration schema tests, using synthetic identities.
 
-Seed existing HA registry records before loading the candidate. Deliberately do
+Seed existing HA registry records before loading the integration. Deliberately do
 not import entity descriptions: changing a production key must fail this test.
 """
 
@@ -21,7 +21,7 @@ from custom_components.itho_spider.config_flow import IthoSpiderConfigFlow
 DOMAIN = "itho_spider"
 GATEWAY = "18:123456"
 SPIDERS = ("21:123456", "21:123457")
-KEYS_040 = {
+ENTITY_KEYS = {
     "climate": ("climate",),
     "sensor": (
         "command_status", "temperature", "target_temperature", "heating_demand",
@@ -49,7 +49,7 @@ def device_snapshot(record):
 
 
 @pytest.mark.asyncio
-async def test_040_two_spiders_keep_entries_registries_options_and_references(hass):
+async def test_two_spiders_keep_entries_registries_options_and_references(hass):
     """Existing renamed/disabled records survive setup and a complete reload."""
     assert IthoSpiderConfigFlow.VERSION == 2
     entities, devices = er.async_get(hass), dr.async_get(hass)
@@ -60,7 +60,7 @@ async def test_040_two_spiders_keep_entries_registries_options_and_references(ha
         entry = MockConfigEntry(
             domain=DOMAIN, version=2, minor_version=1, unique_id=spider,
             title=f"Existing thermostat {index}",
-            data={"port": "/dev/serial/by-id/test-upgrade", "gateway_id": GATEWAY,
+            data={"port": "/dev/serial/by-id/test-registry", "gateway_id": GATEWAY,
                   "spider_id": spider, "name": f"Existing thermostat {index}"},
             options={"enable_control": True, "wait_for_wakeup": bool(index),
                      "reserved_user_option": "keep-me"},
@@ -84,7 +84,7 @@ async def test_040_two_spiders_keep_entries_registries_options_and_references(ha
             device.id, name_by_user=f"Custom device {index}", area_id=area.id
         )
         old_devices[device.id] = device_snapshot(device)
-        for domain, keys in KEYS_040.items():
+        for domain, keys in ENTITY_KEYS.items():
             for key in keys:
                 record = entities.async_get_or_create(
                     domain, DOMAIN, f"{spider}_{key}", config_entry=entry,
