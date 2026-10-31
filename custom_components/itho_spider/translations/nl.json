@@ -1,0 +1,234 @@
+{
+  "title": "Itho Spider",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Verbind je Itho Spider",
+        "description": "Vul de gegevens van de Spider in. Meerdere Spiders kunnen dezelfde USB-gateway delen. Hierna kies je of je een nieuwe radiokoppeling wilt maken. De doeltemperatuur wordt niet gewijzigd.",
+        "data": {
+          "port": "USB-seriële poort",
+          "gateway_id": "Gatewayadres",
+          "spider_id": "Spideradres",
+          "name": "Naam",
+          "enable_control": "Thermostaatbediening inschakelen",
+          "wait_for_wakeup": "Werkt alleen op batterijen"
+        },
+        "data_description": {
+          "port": "Het pad op de Home Assistant-host, bij voorkeur /dev/serial/by-id/… . De poort mag niet door een andere integratie of programma worden gebruikt.",
+          "gateway_id": "Het adres van de evofw3-gateway, bijvoorbeeld 18:123456.",
+          "spider_id": "Het adres van de Spider, bijvoorbeeld 21:123457. De volgende stap biedt een begeleide gatewaykoppeling.",
+          "enable_control": "Sta temperatuuropdrachten en gatewayantwoorden via USB toe. Schakel uit om alleen mee te luisteren. Bediening wacht eerst op actuele thermostaatgegevens; bij opstarten wordt geen nieuwe temperatuur gekozen.",
+          "wait_for_wakeup": "Opdrachten wachten maximaal 11 minuten op de volgende melding van de Spider. Laat uit voor de Spider met OpenTherm-aansluiting."
+        }
+      },
+      "association": {
+        "title": "Gatewayverbinding",
+        "description": "Hoe wil je {name} ({spider_id}) toevoegen?",
+        "menu_options": {
+          "pair_prepare": "Nieuwe radiokoppeling maken",
+          "save_later": "Toevoegen zonder koppelen (al gekoppeld of later koppelen)"
+        }
+      },
+      "pair_prepare": {
+        "title": "Gateway koppelen",
+        "description": "Koppel {name} ({spider_id}). Noteer eerst de huidige doeltemperatuur en zorg dat je bij de Spider staat. Klik pas dan op Verzend; het koppelvenster blijft drie minuten open.\n\nPlaats de batterijen van alleen {name} opnieuw. Activeer binnen twee minuten het scherm en houd het logo circa 5 seconden vast. Tik op het KNIPPERENDE HUISJE, zodat de andere symbolen verdwijnen, en bevestig met het logo. Wacht op signaalsterkte 1–5. Kies geen permanent brandend huisje en raak de BDR91 of ketelmodule niet aan."
+      },
+      "pair_result": {
+        "title": "Gatewayverbinding bevestigd",
+        "description": "Van {name} ({spider_id}) is een koppelbevestiging of status aan deze gateway ontvangen. Controleer op de Spider de eerder genoteerde doeltemperatuur en herstel die zo nodig. Gebruik handmatig verwarmen voor temperatuurbediening. Bediening wacht op actuele thermostaatgegevens; dit kan bij een batterijgevoede Spider circa tien minuten duren.",
+        "data": {
+          "confirm": "Ik heb de doeltemperatuur op de Spider gecontroleerd"
+        }
+      },
+      "pair_failed": {
+        "title": "Koppeling niet bevestigd",
+        "description": "Van {name} ({spider_id}) is binnen het venster geen koppelbevestiging ontvangen. Alleen een terugkeer naar het temperatuurscherm is geen bevestiging. Je kunt opnieuw beginnen zodra je bij de Spider staat.",
+        "menu_options": {
+          "pair_prepare": "Opnieuw proberen",
+          "save_later": "Later koppelen"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Het adres van de evofw3-gateway kon niet worden uitgelezen. Controleer de poort, toegangsrechten en of een ander programma de poort gebruikt.",
+      "gateway_mismatch": "Deze USB-gateway meldt {detected_id}. Vul dat gatewayadres in.",
+      "invalid_gateway_id": "Vul een gatewayadres in van 18:000000 tot en met 18:262143.",
+      "invalid_spider_id": "Vul een Spideradres in van 21:000000 tot en met 21:262143.",
+      "invalid_port": "Vul een lokaal serieel apparaatpad in dat begint met /dev/.",
+      "invalid_name": "Vul een naam voor de thermostaat in.",
+      "unknown": "Er is een onverwachte fout opgetreden. Bekijk het Home Assistant-logboek voor details.",
+      "pair_unavailable": "Koppelen is niet beschikbaar. Controleer de USB-verbinding, schakel thermostaatbediening in en sluit een eventuele verwijderprocedure.",
+      "confirmation_required": "Bevestig de controle voordat je verdergaat."
+    },
+    "abort": {
+      "already_configured": "Deze Spider is al geconfigureerd.",
+      "already_in_progress": "De configuratie van deze Spider is al bezig.",
+      "spider_already_configured": "Deze Spider-thermostaat is al geconfigureerd.",
+      "port_already_configured": "De USB-poort en het gatewayadres komen niet overeen met de bestaande configuratie."
+    },
+    "progress": {
+      "pairing": "Het koppelvenster voor {name} ({spider_id}) staat maximaal drie minuten open.\n\nPlaats de batterijen van alleen {name} opnieuw. Activeer binnen twee minuten het scherm en houd het logo circa 5 seconden vast. Tik op het KNIPPERENDE HUISJE, zodat de andere symbolen verdwijnen, en bevestig met het logo. Wacht op signaalsterkte 1–5. Kies geen permanent brandend huisje en raak de BDR91 of ketelmodule niet aan.\n\nDit scherm gaat verder na de radiobevestiging. Sluiten stopt het koppelvenster; een al voltooide radiokoppeling blijft bestaan."
+    }
+  },
+  "options": {
+    "step": {
+      "settings": {
+        "title": "Thermostaatbediening",
+        "description": "Sta temperatuuropdrachten en gatewayantwoorden toe. Schakel uit om alleen mee te luisteren. Na het wijzigen van deze instelling maakt de integratie opnieuw verbinding en wacht zij op actuele thermostaatgegevens voordat bediening mogelijk is.",
+        "data": {
+          "enable_control": "Thermostaatbediening inschakelen",
+          "wait_for_wakeup": "Wachten op batterijgevoede thermostaat"
+        },
+        "data_description": {
+          "wait_for_wakeup": "Bewaar de opdracht maximaal 11 minuten tot de Spider zich meldt. Bedoeld voor Spiders die alleen op batterijen werken. De weergegeven temperatuur verandert pas na bevestiging."
+        }
+      },
+      "init": {
+        "title": "Spider beheren",
+        "description": "Beheer {name} ({spider_id}).",
+        "menu_options": {
+          "settings": "Bedieningsinstellingen",
+          "pair_prepare": "Gateway koppelen / verbinding controleren",
+          "remove": "Spider verwijderen"
+        }
+      },
+      "pair_prepare": {
+        "title": "Gateway koppelen",
+        "description": "Koppel {name} ({spider_id}). Noteer eerst de huidige doeltemperatuur en zorg dat je bij de Spider staat. Klik pas dan op Verzend; het koppelvenster blijft drie minuten open.\n\nPlaats de batterijen van alleen {name} opnieuw. Activeer binnen twee minuten het scherm en houd het logo circa 5 seconden vast. Tik op het KNIPPERENDE HUISJE, zodat de andere symbolen verdwijnen, en bevestig met het logo. Wacht op signaalsterkte 1–5. Kies geen permanent brandend huisje en raak de BDR91 of ketelmodule niet aan."
+      },
+      "pair_result": {
+        "title": "Gatewayverbinding bevestigd",
+        "description": "Van {name} ({spider_id}) is een koppelbevestiging of status aan deze gateway ontvangen. Controleer op de Spider de eerder genoteerde doeltemperatuur en herstel die zo nodig. Gebruik handmatig verwarmen voor temperatuurbediening. Bediening wacht op actuele thermostaatgegevens; dit kan bij een batterijgevoede Spider circa tien minuten duren.",
+        "data": {
+          "confirm": "Ik heb de doeltemperatuur op de Spider gecontroleerd"
+        }
+      },
+      "pair_failed": {
+        "title": "Koppeling niet bevestigd",
+        "description": "Van {name} ({spider_id}) is binnen het venster geen koppelbevestiging ontvangen. Alleen een terugkeer naar het temperatuurscherm is geen bevestiging. Je kunt opnieuw beginnen zodra je bij de Spider staat.",
+        "menu_options": {
+          "pair_prepare": "Opnieuw proberen",
+          "save_later": "Later koppelen"
+        }
+      },
+      "remove": {
+        "title": "Spider verwijderen",
+        "description": "Kies wat je met {name} ({spider_id}) wilt doen. Voor een software-update of een overstap naar de publieke versie hoef je deze configuratie niet te verwijderen.",
+        "menu_options": {
+          "remove_ha": "Alleen uit Home Assistant verwijderen",
+          "unpair_prepare": "Gateway afmelden en daarna uit Home Assistant verwijderen"
+        }
+      },
+      "remove_ha": {
+        "title": "Verwijderen bevestigen",
+        "description": "{name} ({spider_id}) en de bijbehorende entiteiten worden uit Home Assistant verwijderd. Controleer dashboards en automatiseringen die deze gebruiken. De radiokoppeling met de gateway blijft in de Spider bestaan. De koppeling met de BDR91 of ketelmodule wordt niet gewijzigd. Sluit dit venster om te annuleren.",
+        "data": {
+          "confirm": "Verwijderen uit Home Assistant bevestigen"
+        }
+      },
+      "unpair_prepare": {
+        "title": "Gateway afmelden voorbereiden",
+        "description": "Noteer de huidige doeltemperatuur van {name} ({spider_id}) en ga naar de Spider. Klik op Verzend om de instructies te openen. Home Assistant pauzeert dan de bediening van alleen deze Spider, maximaal tien minuten. Andere Spiders blijven werken. Bij annuleren blijft de configuratie bestaan en wacht bediening op nieuwe gatewaystatus."
+      },
+      "unpair_confirm": {
+        "title": "Afmelden op de Spider",
+        "description": "Voer dit alleen uit op {name} ({spider_id}):\n\n1. Plaats de batterijen opnieuw.\n2. Activeer binnen twee minuten het scherm en houd het logo circa 5 seconden vast.\n3. Tik uitsluitend op het PERMANENT BRANDENDE HUISJE, zodat de andere symbolen verdwijnen.\n4. Bevestig met het logo.\n5. Controleer dat het communicatiesymbool is verdwenen en herstel zo nodig de genoteerde doeltemperatuur.\n\nRaak TEMPERATUUR, VENTILATIE en de BDR91 niet aan. Home Assistant kan de fysieke afmelding niet automatisch bewijzen: bevestig hieronder alleen wat je op het scherm hebt gecontroleerd.",
+        "data": {
+          "confirm": "Ik heb gecontroleerd dat de gatewayverbinding op de Spider is afgemeld"
+        }
+      },
+      "remove_confirm": {
+        "title": "Verwijderen uit Home Assistant",
+        "description": "Je hebt de fysieke gateway-afmelding van {name} ({spider_id}) bevestigd. Verwijder nu ook deze configuratie en de bijbehorende entiteiten uit Home Assistant. Controleer dashboards en automatiseringen die deze gebruiken. Dit stuurt geen afmeldopdracht naar de BDR91.",
+        "data": {
+          "confirm": "Verwijderen uit Home Assistant bevestigen"
+        }
+      }
+    },
+    "progress": {
+      "pairing": "Het koppelvenster voor {name} ({spider_id}) staat maximaal drie minuten open.\n\nPlaats de batterijen van alleen {name} opnieuw. Activeer binnen twee minuten het scherm en houd het logo circa 5 seconden vast. Tik op het KNIPPERENDE HUISJE, zodat de andere symbolen verdwijnen, en bevestig met het logo. Wacht op signaalsterkte 1–5. Kies geen permanent brandend huisje en raak de BDR91 of ketelmodule niet aan.\n\nDit scherm gaat verder na de radiobevestiging. Sluiten stopt het koppelvenster; een al voltooide radiokoppeling blijft bestaan."
+    },
+    "error": {
+      "pair_unavailable": "Koppelen is niet beschikbaar. Controleer de USB-verbinding, schakel thermostaatbediening in en sluit een eventuele verwijderprocedure.",
+      "confirmation_required": "Bevestig de controle voordat je verdergaat.",
+      "not_loaded": "De integratie is niet geladen. Herlaad deze eerst.",
+      "operation_busy": "Er loopt nog een temperatuuropdracht of verwijderprocedure. Rond die eerst af."
+    },
+    "abort": {
+      "removed": "De Spider is uit Home Assistant verwijderd.",
+      "removed_restart": "De configuratie is verwijderd. Herstart Home Assistant om het uitladen te voltooien.",
+      "removal_expired": "Het verwijdervenster is verlopen. De configuratie is behouden. Open de procedure opnieuw en controleer de werkelijke gatewayverbinding op de Spider.",
+      "pair_not_confirmed": "Er is geen nieuwe koppeling bevestigd. De bestaande configuratie is behouden."
+    }
+  },
+  "entity": {
+    "climate": {
+      "thermostat": {
+        "name": "Thermostaat"
+      }
+    },
+    "sensor": {
+      "temperature": {
+        "name": "Temperatuur"
+      },
+      "target_temperature": {
+        "name": "Gewenste temperatuur"
+      },
+      "heating_demand": {
+        "name": "Warmtevraag"
+      },
+      "battery": {
+        "name": "Batterij"
+      },
+      "operating_mode": {
+        "name": "Bedrijfsmodus",
+        "state": {
+          "heat": "Verwarmen",
+          "cool": "Koelen",
+          "off": "Uit"
+        }
+      },
+      "program_mode": {
+        "name": "Programmamodus",
+        "state": {
+          "temporary_override": "Tijdelijke aanpassing",
+          "schedule": "Klokprogramma",
+          "manual": "Handmatig"
+        }
+      },
+      "last_seen": {
+        "name": "Laatst gezien"
+      },
+      "command_status": {
+        "name": "Opdrachtstatus",
+        "state": {
+          "idle": "Geen opdracht",
+          "pending": "Bevestiging afwachten",
+          "waiting_for_thermostat": "Wachten op thermostaat",
+          "confirmed": "Bevestigd",
+          "overridden_locally": "Lokaal gewijzigd",
+          "cancelled_mode_change": "Geannuleerd door moduswijziging",
+          "unconfirmed": "Niet bevestigd",
+          "cancelled_unconfirmed": "Geannuleerd zonder bevestiging",
+          "failed": "Mislukt"
+        }
+      }
+    },
+    "binary_sensor": {
+      "gateway_connected": {
+        "name": "Gateway verbonden"
+      },
+      "control_ready": {
+        "name": "Bediening gereed"
+      },
+      "battery_low": {
+        "name": "Batterij bijna leeg"
+      }
+    },
+    "button": {
+      "pair_gateway": {
+        "name": "Gateway koppelen (3 minuten)"
+      }
+    }
+  }
+}

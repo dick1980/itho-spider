@@ -1,0 +1,14 @@
+{
+  "status": "release-candidate",
+  "repository": "dick1980/itho-spider",
+  "maintainers": [
+    "@dick1980"
+  ],
+  "copyright_holder": "jdezine",
+  "license_spdx": "MIT",
+  "provenance_reviewed": true,
+  "private_vulnerability_reporting_enabled": true,
+  "license_status": "applied-after-targeted-review",
+  "provenance_review_document": "docs/BLUEPRINT-COMPARISON.md",
+  "provenance_review_scope": "identified blueprint protocol-profile use; technical assessment, not legal certification"
+}

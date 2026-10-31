@@ -1,0 +1,234 @@
+{
+  "title": "Itho Spider",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect your Itho Spider",
+        "description": "Enter the Spider details. Multiple Spiders can share one USB gateway. Next choose whether to establish a new radio association. The target temperature is not changed.",
+        "data": {
+          "port": "USB serial port",
+          "gateway_id": "Gateway address",
+          "spider_id": "Spider address",
+          "name": "Name",
+          "enable_control": "Enable thermostat control",
+          "wait_for_wakeup": "Runs on batteries only"
+        },
+        "data_description": {
+          "port": "The path on the Home Assistant host, preferably /dev/serial/by-id/… . The port must not be used by another integration or program.",
+          "gateway_id": "The evofw3 gateway address, for example 18:123456.",
+          "spider_id": "The Spider address, for example 21:123457. The next step offers guided gateway pairing.",
+          "enable_control": "Allow temperature commands and gateway replies over USB. Turn off to only listen. Control first waits for fresh thermostat data; startup does not choose a new temperature.",
+          "wait_for_wakeup": "Commands wait up to 11 minutes for the next Spider report. Leave off for the Spider with an OpenTherm connection."
+        }
+      },
+      "association": {
+        "title": "Gateway association",
+        "description": "How would you like to add {name} ({spider_id})?",
+        "menu_options": {
+          "pair_prepare": "Create a new radio association",
+          "save_later": "Add without pairing (already paired or pair later)"
+        }
+      },
+      "pair_prepare": {
+        "title": "Pair gateway",
+        "description": "Pair {name} ({spider_id}). First note the current target temperature and stand beside the Spider. Then submit to open the three-minute pairing window.\n\nReinsert the batteries in {name} only. Within two minutes, activate the display and hold the logo for about 5 seconds. Tap the BLINKING HOUSE so the other symbols disappear, then confirm with the logo. Wait for signal strength 1–5. Do not select a steadily lit house or operate the BDR91 or boiler module."
+      },
+      "pair_result": {
+        "title": "Gateway association confirmed",
+        "description": "A pairing confirmation or status addressed to this gateway was received from {name} ({spider_id}). Check the previously noted target on the Spider and restore it if needed. Use manual heating for temperature control. Control waits for fresh thermostat data; a battery-powered Spider may take about ten minutes.",
+        "data": {
+          "confirm": "I have checked the target temperature on the Spider"
+        }
+      },
+      "pair_failed": {
+        "title": "Pairing not confirmed",
+        "description": "No pairing confirmation was received from {name} ({spider_id}) within the window. Returning to the temperature display alone is not confirmation. Retry when you are beside the Spider.",
+        "menu_options": {
+          "pair_prepare": "Try again",
+          "save_later": "Pair later"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not read the evofw3 gateway identity. Check the port, device permissions, and whether another program is using it.",
+      "gateway_mismatch": "This USB gateway reports {detected_id}. Enter that gateway address.",
+      "invalid_gateway_id": "Enter a gateway address in the format 18:000000 through 18:262143.",
+      "invalid_spider_id": "Enter a Spider address in the format 21:000000 through 21:262143.",
+      "invalid_port": "Enter a local serial device path starting with /dev/.",
+      "invalid_name": "Enter a name for the thermostat.",
+      "unknown": "An unexpected error occurred. See the Home Assistant log for details.",
+      "pair_unavailable": "Pairing is unavailable. Check USB connectivity, enable thermostat control and close any removal procedure.",
+      "confirmation_required": "Confirm the check before continuing."
+    },
+    "abort": {
+      "already_configured": "This Spider is already configured.",
+      "already_in_progress": "Setup of this Spider is already in progress.",
+      "spider_already_configured": "This Spider thermostat is already configured.",
+      "port_already_configured": "The serial port and gateway address conflict with an existing configuration."
+    },
+    "progress": {
+      "pairing": "The pairing window for {name} ({spider_id}) is open for up to three minutes.\n\nReinsert the batteries in {name} only. Within two minutes, activate the display and hold the logo for about 5 seconds. Tap the BLINKING HOUSE so the other symbols disappear, then confirm with the logo. Wait for signal strength 1–5. Do not select a steadily lit house or operate the BDR91 or boiler module.\n\nThis screen continues after radio confirmation. Closing it stops the window; any completed radio association remains in place."
+    }
+  },
+  "options": {
+    "step": {
+      "settings": {
+        "title": "Thermostat control",
+        "description": "Allow temperature commands and gateway replies. Turn off to only listen. After this setting changes, the integration reconnects and waits for fresh thermostat data before controlling it.",
+        "data": {
+          "enable_control": "Enable thermostat control",
+          "wait_for_wakeup": "Wait for battery-powered thermostat"
+        },
+        "data_description": {
+          "wait_for_wakeup": "Keep a command for up to 11 minutes until the Spider reports. Use for battery-only Spiders. The displayed temperature changes only after confirmation."
+        }
+      },
+      "init": {
+        "title": "Manage Spider",
+        "description": "Manage {name} ({spider_id}).",
+        "menu_options": {
+          "settings": "Control settings",
+          "pair_prepare": "Pair gateway / check association",
+          "remove": "Remove Spider"
+        }
+      },
+      "pair_prepare": {
+        "title": "Pair gateway",
+        "description": "Pair {name} ({spider_id}). First note the current target temperature and stand beside the Spider. Then submit to open the three-minute pairing window.\n\nReinsert the batteries in {name} only. Within two minutes, activate the display and hold the logo for about 5 seconds. Tap the BLINKING HOUSE so the other symbols disappear, then confirm with the logo. Wait for signal strength 1–5. Do not select a steadily lit house or operate the BDR91 or boiler module."
+      },
+      "pair_result": {
+        "title": "Gateway association confirmed",
+        "description": "A pairing confirmation or status addressed to this gateway was received from {name} ({spider_id}). Check the previously noted target on the Spider and restore it if needed. Use manual heating for temperature control. Control waits for fresh thermostat data; a battery-powered Spider may take about ten minutes.",
+        "data": {
+          "confirm": "I have checked the target temperature on the Spider"
+        }
+      },
+      "pair_failed": {
+        "title": "Pairing not confirmed",
+        "description": "No pairing confirmation was received from {name} ({spider_id}) within the window. Returning to the temperature display alone is not confirmation. Retry when you are beside the Spider.",
+        "menu_options": {
+          "pair_prepare": "Try again",
+          "save_later": "Pair later"
+        }
+      },
+      "remove": {
+        "title": "Remove Spider",
+        "description": "Choose what to do with {name} ({spider_id}). You do not need to remove this configuration for a software update or to switch to the public release.",
+        "menu_options": {
+          "remove_ha": "Remove from Home Assistant only",
+          "unpair_prepare": "Unpair gateway, then remove from Home Assistant"
+        }
+      },
+      "remove_ha": {
+        "title": "Confirm removal",
+        "description": "{name} ({spider_id}) and its entities will be removed from Home Assistant. Check dashboards and automations that use them. The radio association with the gateway remains in the Spider. The BDR91 or boiler-module association is not changed. Close this window to cancel.",
+        "data": {
+          "confirm": "Confirm removal from Home Assistant"
+        }
+      },
+      "unpair_prepare": {
+        "title": "Prepare gateway unpairing",
+        "description": "Note the current target temperature of {name} ({spider_id}) and go to the Spider. Submit to open the instructions. Home Assistant pauses control of this Spider only, for up to ten minutes. Other Spiders continue working. Cancelling keeps the configuration and control waits for a new gateway status report."
+      },
+      "unpair_confirm": {
+        "title": "Unpair on the Spider",
+        "description": "On {name} ({spider_id}) only:\n\n1. Reinsert the batteries.\n2. Within two minutes, activate the display and hold the logo for about 5 seconds.\n3. Tap only the STEADILY LIT HOUSE so the other symbols disappear.\n4. Confirm with the logo.\n5. Check that the communication symbol has disappeared and restore the noted target if needed.\n\nDo not operate TEMPERATURE, VENTILATION or the BDR91. Home Assistant cannot automatically prove physical unpairing: confirm below only what you checked on the display.",
+        "data": {
+          "confirm": "I checked on the Spider that its gateway association is removed"
+        }
+      },
+      "remove_confirm": {
+        "title": "Remove from Home Assistant",
+        "description": "You confirmed physical gateway unpairing for {name} ({spider_id}). Now remove its configuration and entities from Home Assistant. Check dashboards and automations that use them. This does not send an unpair command to the BDR91.",
+        "data": {
+          "confirm": "Confirm removal from Home Assistant"
+        }
+      }
+    },
+    "progress": {
+      "pairing": "The pairing window for {name} ({spider_id}) is open for up to three minutes.\n\nReinsert the batteries in {name} only. Within two minutes, activate the display and hold the logo for about 5 seconds. Tap the BLINKING HOUSE so the other symbols disappear, then confirm with the logo. Wait for signal strength 1–5. Do not select a steadily lit house or operate the BDR91 or boiler module.\n\nThis screen continues after radio confirmation. Closing it stops the window; any completed radio association remains in place."
+    },
+    "error": {
+      "pair_unavailable": "Pairing is unavailable. Check USB connectivity, enable thermostat control and close any removal procedure.",
+      "confirmation_required": "Confirm the check before continuing.",
+      "not_loaded": "The integration is not loaded. Reload it first.",
+      "operation_busy": "A temperature command or removal procedure is still in progress. Finish it first."
+    },
+    "abort": {
+      "removed": "The Spider has been removed from Home Assistant.",
+      "removed_restart": "The configuration was removed. Restart Home Assistant to complete unloading.",
+      "removal_expired": "The removal window expired. The configuration was kept. Reopen the procedure and check the actual gateway association on the Spider.",
+      "pair_not_confirmed": "No new pairing was confirmed. The existing configuration was kept."
+    }
+  },
+  "entity": {
+    "climate": {
+      "thermostat": {
+        "name": "Thermostat"
+      }
+    },
+    "sensor": {
+      "temperature": {
+        "name": "Temperature"
+      },
+      "target_temperature": {
+        "name": "Target temperature"
+      },
+      "heating_demand": {
+        "name": "Heating demand"
+      },
+      "battery": {
+        "name": "Battery"
+      },
+      "operating_mode": {
+        "name": "Operating mode",
+        "state": {
+          "heat": "Heating",
+          "cool": "Cooling",
+          "off": "Off"
+        }
+      },
+      "program_mode": {
+        "name": "Program mode",
+        "state": {
+          "temporary_override": "Temporary override",
+          "schedule": "Schedule",
+          "manual": "Manual"
+        }
+      },
+      "last_seen": {
+        "name": "Last seen"
+      },
+      "command_status": {
+        "name": "Command status",
+        "state": {
+          "idle": "Idle",
+          "pending": "Awaiting confirmation",
+          "waiting_for_thermostat": "Waiting for thermostat",
+          "confirmed": "Confirmed",
+          "overridden_locally": "Changed locally",
+          "cancelled_mode_change": "Cancelled by mode change",
+          "unconfirmed": "Unconfirmed",
+          "cancelled_unconfirmed": "Cancelled without confirmation",
+          "failed": "Failed"
+        }
+      }
+    },
+    "binary_sensor": {
+      "gateway_connected": {
+        "name": "Gateway connected"
+      },
+      "control_ready": {
+        "name": "Control ready"
+      },
+      "battery_low": {
+        "name": "Battery low"
+      }
+    },
+    "button": {
+      "pair_gateway": {
+        "name": "Pair gateway (3 minutes)"
+      }
+    }
+  }
+}
