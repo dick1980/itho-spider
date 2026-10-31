@@ -2,11 +2,7 @@
 
 Custom integratie voor meerdere Itho Spiders die één rechtstreeks aangesloten evofw3 USB-gateway delen. Iedere Spider krijgt een eigen configuratie en thermostaat. De integratie leest de thermostaatstatus en kan de gewenste temperatuur aanpassen wanneer de Spider in **handmatig verwarmen** staat.
 
-**Versie 0.4.1.** Een onafhankelijke community-integratie; geen officieel product van Itho Daalderop of Home Assistant. De publieke repository is [dick1980/itho-spider](https://github.com/dick1980/itho-spider), met maintainer `@dick1980` en auteursrechtnaam `jdezine`. De eigen projectcode valt onder MIT na de gerichte herkomstbeoordeling; zie [licentiestatus](LICENSING.md) en [publicatiechecklist](docs/PUBLISHING.md).
-
-Heb je al versie 0.4.0? Volg [bijwerken en terugvallen](docs/UPGRADING.md). Behoud je configuraties: opnieuw toevoegen of koppelen is niet nodig.
-
-De basisversie 0.4.0 is live getest op Home Assistant 2026.10.4 met twee Spiders op één gateway (OpenTherm-voeding en uitsluitend batterijen). Toevoegen, annuleren en verwijderen zijn met een tijdelijke configuratie getest. Fysiek afmelden van echte thermostaten is niet live getest. Versie 0.4.1 is uitsluitend softwarematig getest. Dit is geen certificering van alle Spider- of firmwarevarianten.
+Een onafhankelijke community-integratie voor Home Assistant. De broncode is beschikbaar onder de [MIT-licentie](LICENSE).
 
 ## Hardware en vereisten
 
@@ -47,7 +43,7 @@ De poort mag maar door één toepassing tegelijk worden gebruikt. Schakel het ge
 
 ### HACS
 
-Voeg `https://github.com/dick1980/itho-spider` toe als **Custom repository → Integration** in HACS en download Itho Spider. Herstart Home Assistant. Alleen bij een eerste installatie voeg je daarna een Itho Spider-configuratie toe. Bij overname van een handmatige installatie vervangt HACS dezelfde componentmap: behoud de bestaande configuraties. Deze route is voorbereid, maar nog niet end-to-end via HACS getest en niet aangemeld voor de standaardcatalogus. Kies een gepubliceerde release; de beschikbare versies staan op de [releasepagina](https://github.com/dick1980/itho-spider/releases).
+Voeg `https://github.com/dick1980/itho-spider` toe als **Custom repository → Integration** in HACS en download Itho Spider. Herstart Home Assistant. Voeg daarna via **Instellingen → Apparaten & diensten** de integratie toe. De repository staat niet in de HACS-standaardcatalogus; installatie via de HACS-client is nog niet end-to-end getest. Kies een gepubliceerde release; de beschikbare versies staan op de [releasepagina](https://github.com/dick1980/itho-spider/releases).
 
 ## Spider toevoegen en gateway koppelen
 
@@ -75,9 +71,7 @@ Bij annuleren blijft de configuratie bestaan; na de afmeldinstructies vereist be
 
 Andere Spiders blijven dezelfde USB-verbinding gebruiken. Ook als je de eerst toegevoegde Spider verwijdert, blijft het gedeelde gateway-apparaat voor de overige configuraties behouden. Controleer zelf dashboard- en automatiseringsverwijzingen naar entiteiten die je verwijdert. De standaard Home Assistant-actie **Verwijderen** meldt de gateway niet fysiek af; gebruik bovenstaande wizard voor de begeleide procedure.
 
-## Bijwerken
-
-Volg [de overstap- en terugvalprocedure](docs/UPGRADING.md). Domein en componentmap blijven `itho_spider`, configuratieversie blijft 2. Bestaande adressen, opties, apparaat-ID's en entiteits-ID's blijven behouden; alleen het formulier voor **nieuwe** configuraties heeft geen persoonlijke adresstandaarden meer.
+## Gedeelde gateway
 
 De gateway- en ketelmodule-aanmelding zijn afzonderlijke procedures; raadpleeg de [Itho Spider-handleiding, §5.2.3](https://ithodaalderop.compano.com/Data/Environments/000001/Attachment/Bijlage/A07_Regelapparatuur/A07_01_01_01_Thermostaten/B01_05_MAN/01-00244-007%20Handleiding%20Spider%20Connect%20NLBE.pdf). De integratie kan behoud van de fysieke relaiswerking niet softwarematig bewijzen.
 
@@ -134,7 +128,7 @@ Via het integratiemenu kun je diagnostiek downloaden. Die bevat verbindingsstatu
 
 ## Ontwikkeling en tests
 
-Zie [CONTRIBUTING.md](CONTRIBUTING.md), [het compatibiliteitscontract](docs/COMPATIBILITY.md), [de wijzigingslijst](CHANGELOG.md) en [herkomst en licentie](docs/PROVENANCE.md).
+Zie [CONTRIBUTING.md](CONTRIBUTING.md) voor ontwikkeling en tests en [CHANGELOG.md](CHANGELOG.md) voor wijzigingen.
 
 De seriële verbinding gebruikt 115200 baud, 8N1 en CRLF, met exclusieve toegang. De integratie gebruikt geen 1200-baud-reset en pulst de modemlijnen niet; DTR wordt bij openen actief gezet voor de USB-console. De protocoltests werken met gesynthetiseerde radioadressen. Transporttests gebruiken mocks en een software-PTY, nooit fysieke hardware.
 

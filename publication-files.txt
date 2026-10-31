@@ -35,11 +35,8 @@ custom_components/itho_spider/strings.json
 custom_components/itho_spider/translations/en.json
 custom_components/itho_spider/translations/nl.json
 custom_components/itho_spider/transport.py
-docs/BLUEPRINT-COMPARISON.md
 docs/COMPATIBILITY.md
-docs/PROVENANCE.md
 docs/PUBLISHING.md
-docs/UPGRADING.md
 docs/VALIDATION.md
 docs/third-party/ramses_rf-LICENSE.txt
 hacs.json

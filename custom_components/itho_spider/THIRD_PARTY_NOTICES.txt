@@ -3,9 +3,7 @@ Third-party references and notices
 The Itho Spider manual-heating protocol profile was informed by Onl1ne1373's
 spider.yaml v1.18, commit fbe82495e1f72ab91d62969ce863668dea0c31e0:
 https://github.com/Onl1ne1373/home-assistant-blueprints/blob/fbe82495e1f72ab91d62969ce863668dea0c31e0/spider.yaml
-The blueprint is not bundled or relicensed. No upstream permission or endorsement
-is claimed. See docs/BLUEPRINT-COMPARISON.md in the source distribution for the
-scoped assessment of protocol-profile reuse.
+The blueprint is not bundled or relicensed.
 
 ramses_rf is a protocol interpretation reference:
 https://github.com/ramses-rf/ramses_rf

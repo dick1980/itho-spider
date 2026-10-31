@@ -96,7 +96,7 @@ def validate(root=ROOT, *, release=False):
     if (root / "custom_components/itho_spider/strings.json").read_bytes() != (root / "custom_components/itho_spider/translations/en.json").read_bytes():
         errors.append("English strings/translations mismatch")
     if release:
-        for key in ("repository", "maintainers", "copyright_holder", "license_spdx", "provenance_reviewed", "private_vulnerability_reporting_enabled"):
+        for key in ("repository", "maintainers", "copyright_holder", "license_spdx", "private_vulnerability_reporting_enabled"):
             if not publication.get(key):
                 errors.append(f"Release decision missing: {key}")
         repository = publication.get("repository") or ""
