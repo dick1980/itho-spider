@@ -1,13 +1,13 @@
 # Changelog
 
-## 0.4.1 — prepared, unreleased
+## 0.4.1 — 2026-10-31
 
-- Prepare independent source distribution without private Git history or installation evidence.
+- Distribute independent source without private Git history or installation evidence.
 - Remove personal address/name defaults from new configuration forms. Require explicit identity for transport RF sends; identity-less transport is probe-only.
 - Preserve domain, config version 2, v1 migration, all registry identities and saved options.
 - Replace installation-specific test identities with synthetic fixtures; add upgrade and distribution regression checks.
 - Add installation, management, battery, troubleshooting, upgrade/rollback, provenance and maintainer documentation.
-- Prepare reproducible local archives and validation workflows. Owner/maintainer `dick1980`, repository `dick1980/itho-spider` and copyright holder `jdezine` are confirmed. MIT is applied following the targeted protocol-profile comparison; source attribution and third-party notices are retained. Publication remains pending.
+- Add reproducible archives and validation workflows. Owner/maintainer `dick1980`, repository `dick1980/itho-spider` and copyright holder `jdezine` are confirmed. MIT is applied following the targeted protocol-profile comparison; source attribution and third-party notices are retained.
 
 ## 0.4.0
 
