@@ -1,6 +1,6 @@
 [project]
 name = "home-assistant-itho-spider"
-version = "0.4.1"
+version = "0.4.2"
 license = "MIT"
 description = "Local Home Assistant control of an Itho Spider through evofw3 USB"
 requires-python = ">=3.14"

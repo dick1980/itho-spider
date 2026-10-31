@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.4.2 — 2026-10-31
 
-- Simplify the documentation for new users.
+- Focus installation and usage documentation on new users.
+- Remove private-version upgrade instructions and background assessment reports.
+- Shorten developer and release documentation; retain license notices and automated checks.
 
 ## 0.4.1 — 2026-10-31
 
