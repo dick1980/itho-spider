@@ -23,7 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: home-assistant/actions/hassfest@master
+      # Match the supported runtime; latest validates unreleased Core dependencies.
+      - name: hassfest (Home Assistant 2026.10.4)
+        run: docker run --rm -v "${{ github.workspace }}:/github/workspace" ghcr.io/home-assistant/hassfest:2026.10.4
   hacs:
     runs-on: ubuntu-latest
     steps:
