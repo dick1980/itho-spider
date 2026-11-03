@@ -9,7 +9,7 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
@@ -25,7 +25,7 @@ jobs:
       matrix:
         home-assistant: ['2026.10.4', 'latest']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # Validate the supported baseline and current upstream requirements.
       - name: hassfest
         run: docker run --rm -v "${{ github.workspace }}:/github/workspace" ghcr.io/home-assistant/hassfest:${{ matrix.home-assistant }}
